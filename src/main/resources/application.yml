@@ -55,3 +55,19 @@ mybatis-plus:
 bill:
   download:
     filepath:
+
+wx:
+  refund:
+    url:
+  merchant:
+    key:
+      file:
+        path:
+
+alipay:
+  post:
+    url:
+  read:
+    timeout:
+  connect:
+    timeout:

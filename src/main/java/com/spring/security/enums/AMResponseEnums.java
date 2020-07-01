@@ -33,6 +33,8 @@ public enum AMResponseEnums {
     DATABASE_ERROR("OCR-S-500","数据库异常!"),
     BOUND_STATEMENT_NOT_FOUNT("OCR-S-501","数据库异常!"),
 
+    MD5_CODE("MD5-S-001","MD5编码异常!"),
+
     PARAMS_EMPTY_ERROR("AI-100","参数为空!"),
     DATE_PERIOD_ERROR("AI-101","日期间隔过长!")/*,
     DATABASE_ERROR("AI-100","数据库异常!"),

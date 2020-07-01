@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Properties>
+        <Property  name="log_level">${sys:logs.level}</Property >
+        <Property  name="log_home">${sys:logs.home}</Property >
+    </Properties>
+    <Appenders>
+        <!--  输出控制台的配置 -->
+        <Console name="console" target="SYSTEM_OUT">
+            <!--  控制台只输出level及以上级别的信息（onMatch），其他的直接拒绝（onMismatch） -->
+            <ThresholdFilter level="${log_level}" onMatch="ACCEPT" onMismatch="DENY"/>
+            <!--  这个都知道是输出日志的格式 -->
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} %x %-5level %class{36} %L %M  %msg%n"/>
+        </Console>
+        
+        <Console name="sqlConsole" target="SYSTEM_OUT">
+            <!--只接受程序中DEBUG级别的日志进行处理-->
+            <ThresholdFilter level="DEBUG" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} %x %-5level %class{36} %L %M - %msg%n"/>
+        </Console>
+
+        <!--配置自定义日志，按天输出-->
+        <RollingFile name="fileout" fileName="${log_home}/log.out" filePattern="${log_home}/log-%d{yyyy-MM-dd}.out" >
+            <PatternLayout pattern="%d{yyyy.MM.dd HH:mm:ss.SSS} %x  %-5level %class{36} %L %M %msg%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy modulate="true" interval="1"/>
+            </Policies>
+        </RollingFile>
+
+        <!-- 把系统所有的error全部打到这个文件里  -->
+        <File name="logerror" fileName="${log_home}/error.log">
+            <ThresholdFilter level="error" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="%d{yyyy.MM.dd HH:mm:ss SSS} %x  %-5level %class{36} %L %M %msg%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy modulate="true" interval="1"/>
+            </Policies>
+        </File>
+
+    </Appenders>
+    <!-- 然后定义logger，只有定义了logger并引入的appender，appender才会生效 -->
+    <Loggers>
+        <Root level="${log_level}" includeLocation="true">
+            <AppenderRef ref="console"/>
+            <AppenderRef ref="logerror" />
+            <AppenderRef ref="fileout"/>
+        </Root>
+        
+        <!-- 打印sql语句的参数绑定 -->
+        <Logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="trace" additivity="false">
+            <AppenderRef ref="sqlConsole" />
+        </Logger>
+        <logger name="druid.sql.Statement" level="debug" additivity="false">
+            <appender-ref ref="sqlConsole"/>
+        </logger>
+    
+    </Loggers>
+</Configuration>
