@@ -36,7 +36,7 @@ public interface BatchEntityRepository extends JpaRepository<BatchEntity, Long>,
     List<BatchEntity> findByMerchantIdAndBillDateAndHisIdAndChannel(String merchantId, String billDate, Long hisId, String channel);
 
 
-    @Query("select  new com.gzhc365.web.bill.model.BatchStatisticsEntity(u.channel," +
+    @Query("select  new com.spring.security.model.BatchStatisticsEntity(u.channel," +
             "sum(u.hisAmt)," +
             "sum(u.hisCount)," +
             "sum(u.hisRefundAmt)," +
@@ -59,7 +59,7 @@ public interface BatchEntityRepository extends JpaRepository<BatchEntity, Long>,
                                                @Param("merchantId") String merchantId);
 
 
-    @Query("select  new com.gzhc365.web.bill.model.BatchAllDataEntity(" +
+    @Query("select  new com.spring.security.model.BatchAllDataEntity(" +
             "sum(u.hisAmt)," +
             "sum(u.hisCount)," +
             "sum(u.hisRefundAmt)," +
@@ -84,7 +84,7 @@ public interface BatchEntityRepository extends JpaRepository<BatchEntity, Long>,
                                   @Param("merchantId") String merchantId,
                                   @Param("bizType") String bizType);
 
-    @Query("select  new com.gzhc365.web.bill.model.BatchAllDataEntity(" +
+    @Query("select  new com.spring.security.model.BatchAllDataEntity(" +
             "u.channel, u.channelName,"+
             "sum(u.hisAmt)," +
             "sum(u.hisCount)," +
