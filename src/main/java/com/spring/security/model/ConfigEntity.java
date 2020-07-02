@@ -16,7 +16,7 @@ import java.util.Objects;
  * @Date 2019-08-20
  */
 @Entity
-@Table(name = "t_billc_bill_config", schema = "hc_hiz_jsszxybill_center")
+@Table(name = "t_billc_bill_config", schema = "spring_security")
 @EntityListeners(AuditingEntityListener.class)
 public class ConfigEntity {
     private Long id;

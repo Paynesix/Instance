@@ -16,7 +16,7 @@ import java.sql.Timestamp;
  * @Date 2019-08-20
  */
 @Entity
-@Table(name = "t_billc_bill_batch", schema = "hc_hiz_jsszxybill_center")
+@Table(name = "t_billc_bill_batch", schema = "spring_security")
 @EntityListeners(AuditingEntityListener.class)
 public class BatchEntity {
     private Long id;
