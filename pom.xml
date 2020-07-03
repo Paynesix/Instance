@@ -64,7 +64,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>${mysql.version}</version>
+            <version>8.0.18</version>
         </dependency>
         <!-- mysql start -->
 
@@ -208,7 +208,18 @@
                 </exclusion>
             </exclusions>
         </dependency>
-
+        <!-- Mybatis逆向工程 START -->
+        <!-- 将generatorConfig.xml放入工程根目录下，进入dos下，进入当前工程目录下，执行下面的指令
+把generatorConfig.xml放在F:\newWorkPlace\hc-user-center\hc-service-user\ 下面
+然后doc在这个目录执行下面的命令
+java -jar F:\mybatis-generator\mybatis-generator-core-1.3.3.jar -configfile F:\newWorkPlace\hc-user-center\hc-service-user\generatorConfig.xml -overwrite
+ -->
+        <dependency>
+            <groupId>org.mybatis.generator</groupId>
+            <artifactId>mybatis-generator-core</artifactId>
+            <version>1.3.5</version>
+        </dependency>
+        <!-- Mybatis逆向工程 END -->
     </dependencies>
 
     <build>

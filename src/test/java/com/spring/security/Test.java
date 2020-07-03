@@ -1,8 +1,14 @@
 package com.spring.security;
 
+import com.alibaba.fastjson.JSONObject;
+import com.spring.security.enums.BatchChannelEnum;
+import com.spring.security.tools.EnumUtils;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.io.File;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * @Author: Hutengfei
@@ -21,5 +27,18 @@ public class Test {
         String sss = System.lineSeparator();
         System.out.println(s);
         System.out.println(ss + "==========");
+    }
+
+    public void enumTests(){
+        Class<BatchChannelEnum> clazz = BatchChannelEnum.class;
+        Map<Object, String> enumToMap = EnumUtils.EnumToMap(clazz);
+        List<JSONObject> recordList = enumToMap.entrySet().stream().map(o->{
+            JSONObject item = new JSONObject();
+            item.put("batchChannel", o.getKey());
+            item.put("batchChannelName", o.getValue());
+            return item;
+        }).collect(Collectors.toList());
+
+        recordList.stream().forEach(o-> System.out.println("=============>:" + o.toJSONString()));
     }
 }
