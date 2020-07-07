@@ -220,6 +220,15 @@ java -jar F:\mybatis-generator\mybatis-generator-core-1.3.3.jar -configfile F:\n
             <version>1.3.5</version>
         </dependency>
         <!-- Mybatis逆向工程 END -->
+
+        <!-- email START -->
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+            <version>1.4.7</version>
+        </dependency>
+        <!-- email END -->
+
     </dependencies>
 
     <build>
