@@ -4,6 +4,8 @@
 package com.spring.security.scheduler;
 
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -17,6 +19,8 @@ import java.time.format.DateTimeFormatter;
 @EnableScheduling
 @Slf4j
 public class ScheduleTask {
+
+    private final static Logger log = LoggerFactory.getLogger(ScheduleTask.class);
 
     /**
      * 功能描述: 定时保存图片请求次数, 12小时保存一次

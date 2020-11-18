@@ -22,7 +22,6 @@ public enum BatchChannelEnum implements EnumCommonFacade{
     }
 
     public static String nameOf(String batchChannel){
-
         BatchChannelEnum[] values = BatchChannelEnum.values();
         for(BatchChannelEnum enums:values){
             if(enums.getValue().equals(batchChannel)){

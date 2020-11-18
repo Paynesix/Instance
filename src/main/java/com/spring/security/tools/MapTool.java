@@ -1,5 +1,8 @@
 package com.spring.security.tools;
 
+import com.alibaba.fastjson.JSONObject;
+import org.apache.commons.lang3.StringUtils;
+
 import java.lang.reflect.Field;
 import java.util.*;
 
@@ -105,5 +108,60 @@ public class MapTool {
             return resultMap;
         }
     }
+
+    /**
+     * @Title: map转化为JSONObject对象
+     * @Description: map转化为JSONObject对象
+     * @param map-需要转化的map对象
+     * @return
+     * @author wxy
+     * @Date 2020.11.18 19:37
+     * @version 1.0.0
+     * @throws
+     **/
+    public static JSONObject map2Json(Map<String, Object> map){
+        if(map == null){
+            return new JSONObject();
+        }
+        String res =JSONObject.toJSONString(map);
+        return JSONObject.parseObject(res);
+    }
+
+    /**
+     * @Title: JSONObject 转化为 Map<String, Object> 对象
+     * @Description: JSONObject 转化为 Map<String, Object> 对象
+     * @param json-需要转化的map对象
+     * @return
+     * @author wxy
+     * @Date 2020.11.18 19:37
+     * @version 1.0.0
+     * @throws
+     **/
+    public static Map<String, Object> json2Map(JSONObject json){
+        if(json == null){
+            return new HashMap<>();
+        }
+        return new HashMap<>(json);
+    }
+
+    /**
+     * @Title: JSONObject 转化为 Map<String, Object> 对象
+     * @Description: JSONObject 转化为 Map<String, Object> 对象
+     * @param json-需要转化的map对象
+     * @return
+     * @author wxy
+     * @Date 2020.11.18 19:37
+     * @version 1.0.0
+     * @throws
+     **/
+    public static Map<String, Object> jsonStr2Map(String json){
+        if(StringUtils.isBlank(json)){
+            return new HashMap<>();
+        }
+        return new HashMap<>(JSONObject.parseObject(json));
+    }
+
+    // bean 2 map
+    // map 2 bean
 
 }

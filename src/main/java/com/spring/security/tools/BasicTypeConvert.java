@@ -56,4 +56,36 @@ public class BasicTypeConvert {
     public static String bigDecimalToString(BigDecimal o) {
         return o == null ? "0.00" : o.divide(new BigDecimal(100)).setScale(2, BigDecimal.ROUND_HALF_UP).toString();
     }
+
+
+    /**
+     * @Title: double add
+     * @Description: 多个浮点型数字相加
+     * @param nums
+     * @return
+     * @author wxy
+     * @Date 2020/8/19 9:38
+     * @version 1.0.0
+     * @throws
+     **/
+    public static double add(double... nums) {
+        double rs = 0.0D;
+
+        try {
+            BigDecimal result = new BigDecimal(0);
+            double[] var8 = nums;
+            int var7 = nums.length;
+
+            for(int var6 = 0; var6 < var7; ++var6) {
+                double d = var8[var6];
+                BigDecimal b2 = new BigDecimal(Double.toString(d));
+                result = result.add(b2);
+            }
+
+            rs = result.doubleValue();
+            return rs;
+        } catch (Exception var10) {
+            throw new RuntimeException(var10.getMessage(), var10);
+        }
+    }
 }
