@@ -1,12 +1,15 @@
 package com.spring.security.tools;
 
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.TypeReference;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -48,6 +51,28 @@ public class MapToolTest {
     }
 
     @Test
+    public void json2Map2(){
+        JSONObject json = new JSONObject();
+        json.put("a", 1);
+        json.put("b", "b");
+        Map<String, String> stringObjectMap = JSONObject.parseObject(json.toJSONString(), new TypeReference<Map<String, String>>(){});
+        log.info("=====================>:{}", stringObjectMap);
+        log.info("=====================>:{}", JSONObject.toJSONString(stringObjectMap));
+
+    }
+
+    @Test
+    public void json2Map3(){
+        JSONObject json = new JSONObject();
+        json.put("a", new Integer(1121));
+        json.put("b", "b");
+        Map<String, String> stringObjectMap = JSONObject.toJavaObject(json, Map.class);
+        log.info("=====================>:{}", stringObjectMap);
+        log.info("=====================>:{}", JSONObject.toJSONString(stringObjectMap));
+
+    }
+
+    @Test
     public void jsonStr2Map(){
         String jsonStr = "";
         Map<String, Object> stringObjectMap = MapTool.jsonStr2Map(jsonStr);
@@ -58,5 +83,26 @@ public class MapToolTest {
 
     }
 
+    @Test
+    public void sbTest(){
+        StringBuffer msg = new StringBuffer();
+        log.info("==>{}", msg.length());
+    }
+
+    @Test
+    public void listRemoveIf(){
+        List<String> list = new ArrayList<>();
+        list.add("aaa");
+        list.add("bbb");
+        list.add("ccc");
+        list.removeIf(e->e.equals("aaa"));
+        log.info("=====================>:{}", JSONObject.toJSONString(list));
+    }
+
+    @Test
+    public void TimeConvert(){
+        TimeConvert.VideoDuration videoDuration = TimeConvert.secToTime(1000);
+        log.info("=====================>:{}", videoDuration);
+    }
 
 }
