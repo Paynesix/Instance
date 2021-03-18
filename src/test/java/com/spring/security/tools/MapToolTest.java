@@ -5,6 +5,7 @@ import com.alibaba.fastjson.TypeReference;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 import org.junit.Test;
+import org.springframework.beans.BeanUtils;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.ArrayList;
@@ -21,6 +22,19 @@ import java.util.Map;
 @SpringBootTest
 @Slf4j
 public class MapToolTest {
+
+    @Test
+    public void beanUtils(){
+        List<String> a = new ArrayList<>();
+        a.add("1");
+        a.add("2");
+        List<String> b = new ArrayList<>();
+        BeanUtils.copyProperties(a, b);
+        b.stream().forEach(o-> log.info(JSONObject.toJSONString(o)));
+        String payUrl = "http://baoku.com/";
+        System.out.println(payUrl.endsWith("/"));
+        System.out.println(payUrl + (payUrl.endsWith("/") ? "h5-pay/#/" : "/h5-pay/#/"));
+    }
 
     @Test
     public void map2Json(){
