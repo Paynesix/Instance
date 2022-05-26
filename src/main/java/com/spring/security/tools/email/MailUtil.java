@@ -88,26 +88,26 @@ public class MailUtil {
         MimeBodyPart image = new MimeBodyPart();
         // 将图片数据添加到"节点"
         image.setDataHandler(new DataHandler(new FileDataSource(path + File.separator + "image" + File.separator
-                + "hizpay_strand.jpg")));
+                + "pay_strand.jpg")));
         // 为"节点"设置一个唯一编号（在文本"节点"将引用该ID）
-        image.setContentID("hizpay_strand");
+        image.setContentID("pay_strand");
         // 5. 创建图片"节点"
         MimeBodyPart image2 = new MimeBodyPart();
         // 将图片数据添加到"节点"
-        image2.setDataHandler(new DataHandler(new FileDataSource(path + "image" + File.separator + "hizpay_qr.jpg")));
+        image2.setDataHandler(new DataHandler(new FileDataSource(path + "image" + File.separator + "pay_qr.jpg")));
         // 为"节点"设置一个唯一编号（在文本"节点"将引用该ID）
-        image2.setContentID("hizpay_qr");
+        image2.setContentID("pay_qr");
 
         // 1. 链接1
         MimeBodyPart text = new MimeBodyPart();
         // 这里添加图片的方式是将整个图片包含到邮件内容中, 实际上也可以以 http 链接的形式添加网络图片
         if (!StringUtils.isBlank(paramMap.get("url"))){
             // 4.设置邮件主题
-            msg.setSubject("Hizpay注册验证邮箱", "UTF-8");
+            msg.setSubject("pay注册验证邮箱", "UTF-8");
             text.setContent(EmailTemplate.getEmailTemplate(paramMap.get("url")), "text/html;charset=UTF-8");
         }else {
             // 4.设置邮件主题
-            msg.setSubject("Hizpay发送门店参数邮件", "UTF-8");
+            msg.setSubject("pay发送门店参数邮件", "UTF-8");
             text.setContent(ShopEmailTemplate.getEmailTemplate(paramMap), "text/html;charset=UTF-8");
         }
         // 10. 设置（文本+图片）和 附件 的关系（合成一个大的混合"节点" / Multipart ）
