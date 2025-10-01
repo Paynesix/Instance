@@ -8,9 +8,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -30,7 +28,29 @@ public class Test {
 //        String sss = System.lineSeparator();
 //        System.out.println(s);
 //        System.out.println(ss + "==========");
-        testDateUtils();
+//        testDateUtils();
+        tsetPks(1L, 2L);
+        listIterator();
+    }
+
+    public static void listIterator(){
+        List<String> list = new ArrayList<>();
+        list.add("1");
+        list.add("2");
+        list.add("3");
+        list.add("4");
+        list.add("5");
+//        Iterator iterator = list.listIterator();
+        Iterator<String> iterator = list.iterator();
+        while (iterator.hasNext()){
+            String next = iterator.next();
+            if("4".equals(next) ){
+                list.remove(next);
+//                list.add(next);
+//                iterator.remove();
+            }
+        }
+        System.out.println(list);
     }
 
     public void enumTests(){
@@ -79,4 +99,16 @@ public class Test {
         int i = daysBetween(begindate, enddate);
         System.out.println("====> i ：" + i);
     }
+
+    public static boolean tsetPks(Long... pks){
+        System.out.println(JSONObject.toJSONString(pks));
+        return testPks(pks);
+    }
+
+    private static boolean testPks(Long... pks) {
+        for (Long i : pks)
+            System.out.println(i);
+        return true;
+    }
+
 }
