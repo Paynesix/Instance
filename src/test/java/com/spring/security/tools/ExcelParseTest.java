@@ -37,13 +37,12 @@ public class ExcelParseTest {
     @Test
     public void testParseAir() throws Exception {
         // 1\统计每个sku售卖的数量 妙手后台下载的sku数据
-        Map<String, Integer> excelSkuCount = getExcelSkuCount("D:\\down\\chrome\\导出订单包裹-20251001162221 (1).xlsx");
+        Map<String, Integer> excelSkuCount = getExcelSkuCount("src/test/excel/" + "妙手导出订单记录.xlsx");
         // 2\获取模板表格 之前统计的数据
-        Map<String, WuKuangModuleModel> excelModule = getExcelModule( "C:\\Users\\SeediqBale_Payne\\Pictures\\shop\\海外仓条形码\\无边圆框-泰国\\泰国-无框-备货底板.xlsx");
+        Map<String, WuKuangModuleModel> excelModule = getExcelModule( "src/test/excel/" + "泰国-无框-备货底板.xlsx");
         // 3\输出备货表格 输出到之前统计的数据哪里
         List<String[]> outList =  getExcelList(excelSkuCount, excelModule);
-        exportToExcel(outList, "C:\\Users\\SeediqBale_Payne\\Pictures\\shop\\海外仓条形码\\无边圆框-泰国\\泰国-无框-备货"+ DateTimeUtils
-                .getCurrentDateTime() +".xlsx");
+        exportToExcel(outList, "src/test/excel/" + "泰国-无框-备货"+ DateTimeUtils.getCurrentDateTime() +".xlsx");
     }
     
     private List<String[]> getExcelList(Map<String, Integer> excelSkuCount,
