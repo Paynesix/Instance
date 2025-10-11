@@ -22,9 +22,9 @@ public class GeneratorSqlmap {
         List<String> warnings = new ArrayList<String>();
         boolean overwrite = true;
         //指定 逆向工程配置文件
-//        String path = new File("").getCanonicalPath(); // D:/gzhc/workspace/
-//        String path = this.getClass().getResource("/").getPath(); // D:/gzhc/workspace/Instance/target/test-classes/
-        String path = System.getProperty("user.dir"); // D:\gzhc\workspace
+//        String path = new File("").getCanonicalPath(); // D:/workspace/
+//        String path = this.getClass().getResource("/").getPath(); // D:/workspace/Instance/target/test-classes/
+        String path = System.getProperty("user.dir"); // D:\workspace
         System.out.println(path);
         File configFile = new File(path + "/Instance/generatorConfig.xml");
         ConfigurationParser cp = new ConfigurationParser(warnings);
